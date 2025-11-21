@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Corrida pela Fé</title>
+  <style>
+    /* Estilo geral da página */
+    body {
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+      color: white;
+      text-align: center;
+      background-color: #000;
+    }
+
+    .banner {
+      position: relative;
+      height: 100vh;
+      background: url("corrida.jpg.jpeg") no-repeat center center/cover;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.6);
+      z-index: 1;
+    }
+
+    .conteudo {
+      position: relative;
+      z-index: 2;
+      max-width: 700px;
+      padding: 20px;
+    }
+
+    h1 {
+      font-size: 48px;
+      margin-bottom: 10px;
+      color: #ffa500; 
+    }
+
+    p {
+      font-size: 18px;
+      margin-bottom: 25px;
+      color: #f1f1f1;
+    }
+
+    .detalhes {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      font-size: 18px;
+      margin-bottom: 30px;
+    }
+
+    .detalhes span {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .botao {
+      background-color: #ff6600;
+      color: white;
+      border: none;
+      padding: 15px 40px;
+      border-radius: 8px;
+      font-size: 18px;
+      cursor: pointer;
+      transition: background 0.3s;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .botao:hover {
+      background-color: #e65c00;
+    }
+
+    /* Estilo para a seção do formulário */
+    #formulario-inscricao {
+      background-color: #f5f5f5;
+      padding: 60px 20px;
+      color: #000;
+      min-height: 50vh;
+    }
+
+  </style>
+</head>
+<body>
+
+  <div class="banner">
+    <div class="overlay"></div>
+    <div class="conteudo">
+      <h1>Corrida pela Fé 2025</h1>
+      <p>Participe da maior corrida da cidade! Desafie seus limites e promova uma vida saudável.</p>
+
+      <div class="detalhes">
+        <span>📅30 de Dezembro, 2025</span>
+        <span>📍Praça João Pessoa, Guarabira Pb</span>
+      </div>    
+      <!-- BOTÃO CORRIGIDO -->
+      <button class="botao" onclick="rolarParaInscricao()">Inscreva-se Agora</button>
+    </div>
+  </div>
+
+  <section style="display: flex; justify-content: space-between; align-items: flex-start; padding: 60px; background-color: white; color: black; flex-wrap: wrap;">
+    <div style="flex: 1; min-width: 300px; max-width: 600px; text-align: left;">
+      <h2 style="font-size: 28px; font-weight: bold; margin-bottom: 20px; color: #000000;">
+        Sobre o Evento
+      </h2>
+      <p style="font-size: 18px; line-height: 1.6; color: black;">
+        A <strong>Corrida pela Fé</strong> é mais que um evento esportivo — é uma celebração de esperança, superação e união. Reunindo pessoas de todas as idades, ela convida cada participante a correr movido pela fé e pelo desejo de viver com propósito.
+        Com percursos de 5 km, 10 km e 21 km, a corrida acolhe desde iniciantes até atletas experientes, promovendo saúde, espiritualidade e bem-estar.
+        Cada participante recebe um kit exclusivo com camiseta, número de peito e medalha, simbolizando não apenas a conquista da chegada, mas o valor da jornada.
+      </p>
+    </div>
+
+    <div style="min-width: 250px; text-align: left; background-color: #949393; padding: 20px 25px; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+      <h3 style="font-size: 24px; color: #000000; margin-bottom: 15px;">Informações</h3>
+      <p style="margin-bottom: 15px;">
+        <strong style="color: #ff6600;">Horário</strong><br>
+        Largada: 5h00 da manhã
+      </p>
+      <p style="margin-bottom: 15px;">
+        <strong style="color: #ff6600;">Local</strong><br>
+        João Pessoa / Guarabira Pb 
+      
+      <p>
+        <strong style="color: #ff6600;">Premiação</strong><br>
+        Troféus para os 3 primeiros de cada categoria
+      </p>
+    </div>
+  </section>
+
+  <!-- SEÇÃO CATEGORIAS E VALORES -->
+  <section id="categorias" style="padding: 60px; background-color: #becdcf; color: #000; text-align: center;">
+    <h2 style="color: #ff6600; font-size: 28px; margin-bottom: 30px;">Categorias e Valores</h2>
+    <div style="display: flex; justify-content: center; gap: 30px; flex-wrap: wrap;">
+      <div style="background-color: #949393; padding: 20px 30px; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); width: 250px;">
+        <h3 style="color: #f5f5f5;">Percurso 5 km</h3>
+        <p style="font-size: 16px;">Ideal para iniciantes e caminhada.</p>
+        <p style="color: #ff6600; font-weight: bold; font-size: 20px;">R$ 60,00</p>
+      </div>
+
+      <div style="background-color: #949393; padding: 20px 30px; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); width: 250px;">
+        <h3 style="color: #ffffff;">Percurso 10 km</h3>
+        <p style="font-size: 16px;">Para corredores intermediários.</p>
+        <p style="color: #ff6600; font-weight: bold; font-size: 20px;">R$ 80,00</p>
+      </div>
+
+      <div style="background-color: #949393; padding: 20px 30px; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); width: 250px;">
+        <h3 style="color: #ffffff;">Percurso 21 km</h3>
+        <p style="font-size: 16px;">Desafio para atletas experientes.</p>
+        <p style="color: #ff6600; font-weight: bold; font-size: 20px;">R$ 100,00</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SEÇÃO KIT DO PARTICIPANTE -->
+  <section id="kit" style="padding: 60px; background-color: #becdcf; color: #000; text-align: center;">
+    <h2 style="color: #ff6600; font-size: 28px; margin-bottom: 30px;">Kit do Participante</h2>
+    <div style="display: flex; justify-content: center; gap: 30px; flex-wrap: wrap;">
+      <div style="background-color: #f5f5f5; padding: 20px 30px; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); width: 250px;">
+        🏅<h3 style="color: #000;">Medalha</h3>
+        <p>Medalha exclusiva para todos os concluintes.</p>
+      </div>
+
+      <div style="background-color: #f5f5f5; padding: 20px 30px; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); width: 250px;">
+        🎽<h3 style="color: #000;">Camiseta</h3>
+        <p>Camiseta oficial do evento em material dry-fit.</p>
+      </div>
+
+      <div style="background-color: #f5f5f5; padding: 20px 30px; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); width: 250px;">
+        🎒<h3 style="color: #000;">Bolsa</h3>
+        <p>Bolsa personalizada para levar seus pertences.</p>
+      </div>
+
+      <div style="background-color: #f5f5f5; padding: 20px 30px; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); width: 250px;">
+        🔢<h3 style="color: #000;">Número de Peito</h3>
+        <p>Identificação oficial para os participantes.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Seção do formulário de inscrição -->
+  <section id="formulario-inscricao" style="padding: 60px; background-color: #becdcf; color: #000; text-align: center;">
+    <h2 style="font-size: 36px; color: #ff6600; margin-bottom: 30px;">FAÇA SUA INSCRIÇÃO</h2>
+    <p style="font-size: 18px; margin-bottom: 40px; color: #333;">
+      Preencha o formulário abaixo para garantir sua vaga na Corrida pela Fé 2025!
+    </p>
+
+    <!-- Formulário de inscrição integrado -->
+    <div style="max-width: 500px; margin: 0 auto; background: rgb(102, 99, 99); padding: 30px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+      <form action="/action_page.php" style="text-align: left;">
+        <div style="margin-bottom: 15px;">
+          <label for="fname" style="display: block; margin-bottom: 5px; font-weight: bold;">Nome completo:</label>
+          <input type="text" id="fname" name="fname" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;">
+        </div>
+
+        <div style="margin-bottom: 15px;">
+          <label for="email" style="display: block; margin-bottom: 5px; font-weight: bold;">E-mail:</label>
+          <input type="email" id="email" name="email" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;">
+        </div>
+
+        <div style="margin-bottom: 15px;">
+          <label for="categoria" style="display: block; margin-bottom: 5px; font-weight: bold;">Categoria:</label>
+          <select id="categoria" name="categoria" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;">
+            <option value="5km">5 km - R$ 60,00</option>
+            <option value="10km">10 km - R$ 80,00</option>
+            <option value="21km">21 km - R$ 100,00</option>
+          </select>
+        </div>
+
+        <input type="submit" value="Realizar Inscrição" class="botao" style="width: 100%; margin-top: 20px;">
+      </form> 
+    </div>
+  </section>
+
+    <!--função de scroll para o fim da página-->
+  <script>
+    function rolarParaInscricao() {
+      const formulario = document.getElementById('formulario-inscricao');
+      formulario.scrollIntoView({
+        behavior: 'smooth', // Rolagem suave
+        block: 'start'
+      });
+    }
+  </script>
+
+
+  <!--direitos reservados-->
+	<p>&#169; 
+    <p style="color: #f1f1f1; font-style: italic;"> Direitos Reservados </p>
+    
+
+</body>
+</html>
+
