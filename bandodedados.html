@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Cadastro - Corrida pela Fé</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+      background-color: #f5f5f5;
+      color: #333;
+    }
+    
+    .container {
+      max-width: 600px;
+      margin: 50px auto;
+      padding: 30px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+    
+    h1 {
+      color: #ff6600;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    
+    .form-group {
+      margin-bottom: 20px;
+    }
+    
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+    
+    input, select {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-size: 16px;
+      box-sizing: border-box;
+    }
+    
+    .botao {
+      background-color: #ff6600;
+      color: white;
+      border: none;
+      padding: 15px 40px;
+      border-radius: 8px;
+      font-size: 18px;
+      cursor: pointer;
+      transition: background 0.3s;
+      width: 100%;
+      margin-top: 20px;
+    }
+    
+    .botao:hover {
+      background-color: #e65c00;
+    }
+    
+    .voltar {
+      display: block;
+      text-align: center;
+      margin-top: 20px;
+      color: #ff6600;
+      text-decoration: none;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    
+    .voltar:hover {
+      text-decoration: underline;
+    }
+    
+    .mensagem {
+      padding: 15px;
+      border-radius: 5px;
+      margin-bottom: 20px;
+      text-align: center;
+      display: none;
+    }
+    
+    .sucesso {
+      background-color: #d4edda;
+      color: #155724;
+      border: 1px solid #c3e6cb;
+    }
+    
+    .erro {
+      background-color: #f8d7da;
+      color: #721c24;
+      border: 1px solid #f5c6cb;
+    }
+
+    /* Estilo para a lista de dados */
+    .data-list {
+      margin-top: 30px;
+      padding: 20px;
+      background: #f8f9fa;
+      border-radius: 8px;
+    }
+
+    .data-list h3 {
+      color: #ff6600;
+      margin-bottom: 15px;
+    }
+
+    .data-list ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .data-list li {
+      padding: 10px;
+      margin: 5px 0;
+      background: white;
+      border-radius: 5px;
+      border-left: 4px solid #ff6600;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>📝 Formulário de Inscrição</h1>
+    
+    <div id="mensagem" class="mensagem"></div>
+    
+    <form id="formInscricao">
+      <div class="form-group">
+        <label for="nome">Nome Completo *</label>
+        <input type="text" id="nome" name="nome" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="email">E-mail *</label>
+        <input type="email" id="email" name="email" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="telefone">Telefone</label>
+        <input type="tel" id="telefone" name="telefone" placeholder="(00) 00000-0000">
+      </div>
+      
+      <div class="form-group">
+        <label for="data_nascimento">Data de Nascimento</label>
+        <input type="date" id="data_nascimento" name="data_nascimento">
+      </div>
+      
+      <div class="form-group">
+        <label for="categoria">Categoria *</label>
+        <select id="categoria" name="categoria" required>
+          <option value="">Selecione uma categoria</option>
+          <option value="5km">5 km - R$ 60,00</option>
+          <option value="10km">10 km - R$ 80,00</option>
+          <option value="21km">21 km - R$ 100,00</option>
+        </select>
+      </div>
+      
+      <button type="submit" class="botao">🎯 Confirmar Inscrição</button>
+    </form>
+
+    <!-- Seção para exibir os dados cadastrados -->
+    <div class="data-list">
+      <h3>📊 Inscrições Realizadas</h3>
+      <ul id="data-list">
+        <!-- esse parte de inscrição foi feito com java -->
+      </ul>
+    </div>
+    
+    <a class="voltar" onclick="voltarParaPrincipal()">← Voltar para a página principal</a>
+  </div>
+
+  <!-- essa parte é o banco de dados do supabase -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>
+    // essa parte é as chaves da api
+    const SUPABASE_URL = 'https://jlkpjplnlyndmlvjulsn.supabase.co';
+    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Impsa3BqcGxubHluZG1sdmp1bHNuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQwOTIzNzQsImV4cCI6MjA3OTY2ODM3NH0.TMPudsz30MLMM2aEdwxMkdRawdsh9aeMF3x1piuyYac';
+
+    // Inicializa o cliente Supabase CORRETAMENTE
+    const { createClient } = window.supabase;
+    const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+    // Função para voltar para a página principal do projeto
+    function voltarParaPrincipal() {
+      window.location.href = "https://bookish-giggle-q7g596j5qxpg365x5-5501.app.github.dev/projetofinalhtml/projetofaculdade.html";
+    }
+
+    // mensagens de erros
+    function mostrarMensagem(texto, tipo) {
+      const mensagem = document.getElementById('mensagem');
+      mensagem.textContent = texto;
+      mensagem.className = `mensagem ${tipo}`;
+      mensagem.style.display = 'block';
+      
+      setTimeout(() => {
+        mensagem.style.display = 'none';
+      }, 5000);
+    }
+
+    // Função para buscar e exibir dados do Supabase
+    async function fetchData() {
+      try {
+        const { data, error } = await supabase
+          .from('inscricoes_corrida') // NOME DA SUA TABELA
+          .select('*')
+          .order('created_at', { ascending: false }); // Ordena por data de criação
+
+        if (error) {
+          console.error('Erro ao buscar dados:', error.message);
+          mostrarMensagem('❌ Erro ao carregar inscrições: ' + error.message, 'erro');
+          return;
+        }
+
+        // Exibe os dados na página HTML
+        const dataList = document.getElementById('data-list');
+        dataList.innerHTML = ''; // Limpa a lista antes de adicionar
+
+        if (data.length === 0) {
+          dataList.innerHTML = '<li>Nenhuma inscrição encontrada</li>';
+          return;
+        }
+
+        data.forEach(item => {
+          const li = document.createElement('li');
+          li.innerHTML = `
+            <strong>${item.nome_completo}</strong> - ${item.email}<br>
+            <small>Categoria: ${item.categoria} | Telefone: ${item.telefone || 'Não informado'}</small>
+          `;
+          dataList.appendChild(li);
+        });
+
+      } catch (error) {
+        console.error('Erro geral:', error);
+        mostrarMensagem('❌ Erro ao carregar dados', 'erro');
+      }
+    }
+
+    // parte do envio do formulário
+    document.getElementById('formInscricao').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      const botao = e.target.querySelector('button');
+      const textoOriginal = botao.textContent;
+      botao.textContent = 'Cadastrando...';
+      botao.disabled = true;
+      
+      // Coletar dados do formulário
+      const formData = new FormData(e.target);
+      const dados = {
+        nome_completo: formData.get('nome'),
+        email: formData.get('email'),
+        telefone: formData.get('telefone'),
+        data_nascimento: formData.get('data_nascimento'),
+        categoria: formData.get('categoria')
+      };
+      
+      try {
+        // Inserir dados no Supabase
+        const { data, error } = await supabase
+          .from('inscricoes_corrida') // NOME DA SUA TABELA
+          .insert([dados])
+          .select();
+        
+        if (error) throw error;
+        
+        mostrarMensagem('✅ Inscrição realizada com sucesso!', 'sucesso');
+        e.target.reset();
+        
+        // Atualiza a lista de inscrições após cadastro
+        
+      } catch (error) {
+        console.error('Erro:', error);
+        mostrarMensagem('❌ Erro ao realizar inscrição: ' + error.message, 'erro');
+      } finally {
+        botao.textContent = textoOriginal;
+        botao.disabled = false;
+      }
+    });
+
+    // Carrega os dados quando a página é aberta
+    document.addEventListener('DOMContentLoaded', function() {
+    });
+  </script>
+</body>
+</html>
